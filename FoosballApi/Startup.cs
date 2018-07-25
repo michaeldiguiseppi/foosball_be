@@ -27,9 +27,8 @@ namespace FoosballApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<GameContext>(opt =>
-            {
-                opt.UseSqlServer(Configuration.GetConnectionString("FoosballDb"));
+            services.AddEntityFrameworkNpgsql().AddDbContext<GameContext>(opt => {
+                opt.UseNpgsql(Configuration.GetConnectionString("Foosball"));
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
