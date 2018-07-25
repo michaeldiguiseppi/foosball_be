@@ -15,9 +15,9 @@ using FoosballApi.Models;
 
 namespace FoosballApi
 {
-    public class Startup
+    public class StartupProduction
     {
-        public Startup(IConfiguration configuration)
+        public StartupProduction(IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -28,8 +28,7 @@ namespace FoosballApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddEntityFrameworkNpgsql().AddDbContext<GameContext>(opt => {
-                
-                opt.UseNpgsql(Configuration.GetConnectionString("Foosball"));
+                opt.UseNpgsql(Configuration.GetConnectionString("Foosball-Prod"));
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
